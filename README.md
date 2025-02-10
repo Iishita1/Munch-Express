@@ -7,6 +7,7 @@ In this website we are gonna integrate many old and new features
   - CRUD operations for menu items and orders
   - Order tracking (e.g., Pending, Preparing, Ready, Delivered)
   - Payment integration (Cash on Delivery/Online Payment)
+  
   will be present as well as
 
 ## The team will also try to integrate some of the Bonus Features metioned in the project list like :
@@ -25,4 +26,5 @@ In this website we are gonna integrate many old and new features
    -	Jinja2
    -	Bootstrap
    -	VS Code
+  
   There might me additions to the technologies used depending upon the circumstances and requirement of the website
