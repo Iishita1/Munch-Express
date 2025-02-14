@@ -573,12 +573,19 @@
                 users.push({ name, email, password });
                 localStorage.setItem('users', JSON.stringify(users));
 
-                // Show success message
+                // Store current user info
+                localStorage.setItem('currentUser', JSON.stringify({
+                    name: name,
+                    email: email
+                }));
+
+                // Show success message and redirect
                 document.getElementById('signupSuccess').style.display = 'block';
                 event.target.reset();
 
-                // Switch to login tab after 2 seconds
-                setTimeout(() => switchTab('login'), 2000);
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
             }
         }
 
@@ -606,9 +613,21 @@
                 return;
             }
 
-            // Show success message
+            // Store logged in user info
+            localStorage.setItem('currentUser', JSON.stringify({
+                name: user.name,
+                email: user.email
+            }));
+
+            // Show success message and redirect
             document.getElementById('loginSuccess').style.display = 'block';
             event.target.reset();
+            
+            setTimeout(() => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirect = urlParams.get('redirect') || 'index.html';
+                window.location.href = redirect;
+            }, 1500);
         }
     </script>
 </body>
