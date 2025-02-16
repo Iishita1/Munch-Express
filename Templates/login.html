@@ -410,15 +410,15 @@
             </div>
 
             <!-- Login Form -->
-            <form id="loginForm" onsubmit="handleLogin(event)">
+            <form id="loginForm" action="{{ url_for('login') }}" method="POST" onsubmit="return handleLogin(event)">
                 <div class="form-group">
                     <label for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" required>
+                    <input type="email" id="loginEmail" name="email" required>
                     <div class="error" id="loginEmailError">Please enter a valid email address</div>
                 </div>
                 <div class="form-group">
                     <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" required>
+                    <input type="password" id="loginPassword" name="password" required>
                     <div class="error" id="loginPasswordError">Incorrect password</div>
                 </div>
                 <button type="submit">Sign In</button>
@@ -426,20 +426,20 @@
             </form>
 
             <!-- Signup Form -->
-            <form id="signupForm" onsubmit="handleSignup(event)" style="display: none;">
+            <form id="signupForm" action="{{ url_for('signup') }}" method="POST" style="display: none;">
                 <div class="form-group">
                     <label for="signupName">Full Name</label>
-                    <input type="text" id="signupName" required>
+                    <input type="text" id="signupName" name="name" required>
                     <div class="error" id="signupNameError">Please enter your full name</div>
                 </div>
                 <div class="form-group">
                     <label for="signupEmail">Email</label>
-                    <input type="email" id="signupEmail" required>
+                    <input type="email" id="signupEmail" name="email" required>
                     <div class="error" id="signupEmailError">Please enter a valid email address</div>
                 </div>
                 <div class="form-group">
                     <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" required>
+                    <input type="password" id="signupPassword" name="password" required>
                     <div class="error" id="signupPasswordError">Password must be at least 8 characters</div>
                 </div>
                 <button type="submit">Sign Up</button>
@@ -505,7 +505,7 @@
             const loginForm = document.getElementById('loginForm');
             const signupForm = document.getElementById('signupForm');
             const tabs = document.querySelectorAll('.tab');
-            
+
             if (tab === 'login') {
                 loginForm.style.display = 'block';
                 signupForm.style.display = 'none';
@@ -517,118 +517,88 @@
                 tabs[0].classList.remove('active');
                 tabs[1].classList.add('active');
             }
-
-            // Clear all forms and errors
-            clearErrors();
-            document.querySelectorAll('form').forEach(form => form.reset());
-            document.querySelectorAll('.success-message').forEach(msg => msg.style.display = 'none');
         }
 
-        function clearErrors() {
-            document.querySelectorAll('.error').forEach(error => error.style.display = 'none');
-            document.querySelectorAll('input').forEach(input => input.classList.remove('error-field'));
-        }
-
-        function handleSignup(event) {
+        async function handleLogin(event) {
             event.preventDefault();
-            clearErrors();
-
-            const name = document.getElementById('signupName').value;
-            const email = document.getElementById('signupEmail').value;
-            const password = document.getElementById('signupPassword').value;
-
-            // Validation
-            let isValid = true;
-
-            if (name.trim().length < 2) {
-                document.getElementById('signupNameError').style.display = 'block';
-                document.getElementById('signupName').classList.add('error-field');
-                isValid = false;
-            }
-
-            if (!email.match(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/)) {
-                document.getElementById('signupEmailError').style.display = 'block';
-                document.getElementById('signupEmail').classList.add('error-field');
-                isValid = false;
-            }
-
-            if (password.length < 8) {
-                document.getElementById('signupPasswordError').style.display = 'block';
-                document.getElementById('signupPassword').classList.add('error-field');
-                isValid = false;
-            }
-
-            if (isValid) {
-                // Store user data
-                const users = JSON.parse(localStorage.getItem('users') || '[]');
-                const userExists = users.some(user => user.email === email);
-
-                if (userExists) {
-                    document.getElementById('signupEmailError').textContent = 'Email already registered';
-                    document.getElementById('signupEmailError').style.display = 'block';
-                    document.getElementById('signupEmail').classList.add('error-field');
-                    return;
-                }
-
-                users.push({ name, email, password });
-                localStorage.setItem('users', JSON.stringify(users));
-
-                // Store current user info
-                localStorage.setItem('currentUser', JSON.stringify({
-                    name: name,
-                    email: email
-                }));
-
-                // Show success message and redirect
-                document.getElementById('signupSuccess').style.display = 'block';
-                event.target.reset();
-
-                setTimeout(() => {
-                    window.location.href = "{{url_for('index')}}";
-                }, 1500);
-            }
-        }
-
-        function handleLogin(event) {
-            event.preventDefault();
-            clearErrors();
-
+            
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
-
-            // Get users from localStorage
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            const user = users.find(u => u.email === email);
-
-            if (!user) {
-                document.getElementById('loginEmailError').textContent = 'Email not found';
-                document.getElementById('loginEmailError').style.display = 'block';
-                document.getElementById('loginEmail').classList.add('error-field');
-                return;
-            }
-
-            if (user.password !== password) {
-                document.getElementById('loginPasswordError').style.display = 'block';
-                document.getElementById('loginPassword').classList.add('error-field');
-                return;
-            }
-
-            // Store logged in user info
-            localStorage.setItem('currentUser', JSON.stringify({
-                name: user.name,
-                email: user.email
-            }));
-
-            // Show success message and redirect
-            document.getElementById('loginSuccess').style.display = 'block';
-            event.target.reset();
+            const errorEmail = document.getElementById('loginEmailError');
+            const errorPassword = document.getElementById('loginPasswordError');
+            const successMessage = document.getElementById('loginSuccess');
             
-            setTimeout(() => {
-                const urlParams = new URLSearchParams(window.location.search);
-                const redirect = urlParams.get('redirect') || "{{url_for('index')}}";
-                window.location.href = redirect;
-            }, 1500);
+            // Reset error messages
+            errorEmail.style.display = 'none';
+            errorPassword.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Store user data in localStorage
+                    localStorage.setItem('user', JSON.stringify({
+                        id: data.user_id,
+                        name: data.name,
+                        email: data.email,
+                        isAuthenticated: true
+                    }));
+
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    successMessage.textContent = 'Successfully logged in!';
+
+                    // Redirect to home page after a brief delay
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 1000);
+                } else {
+                    // Handle different error cases
+                    if (data.error === 'email_not_found') {
+                        errorEmail.textContent = 'No account found with this email';
+                        errorEmail.style.display = 'block';
+                    } else if (data.error === 'invalid_password') {
+                        errorPassword.textContent = 'Incorrect password';
+                        errorPassword.style.display = 'block';
+                    } else {
+                        errorEmail.textContent = data.message || 'An error occurred';
+                        errorEmail.style.display = 'block';
+                    }
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                errorEmail.textContent = 'An error occurred. Please try again.';
+                errorEmail.style.display = 'block';
+            }
+
+            return false;
         }
+
+        // Function to check if user is already logged in
+        function checkLoginStatus() {
+            const userData = localStorage.getItem('user');
+            if (userData) {
+                const user = JSON.parse(userData);
+                if (user.isAuthenticated) {
+                    window.location.href = '/';
+                }
+            }
+        }
+
+        // Check login status when page loads
+        document.addEventListener('DOMContentLoaded', checkLoginStatus);
     </script>
 </body>
 </html>

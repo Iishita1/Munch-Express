@@ -1709,9 +1709,11 @@
       </div>
     </div>
 
-    <div class="floating-cart" onclick="window.location.href='cart.html'">
+    <div class="floating-cart">
+      <a href="{{url_for('cart')}}">
       <i data-feather="shopping-cart"></i>
       <div class="cart-count">0</div>
+    </a>
     </div>
 
     <script src="https://unpkg.com/feather-icons"></script>
