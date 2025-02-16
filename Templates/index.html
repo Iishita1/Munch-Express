@@ -999,7 +999,7 @@
           <input type="text" class="search-input" placeholder="Search for dishes, restaurants..." />
           <div class="search-results"></div>
           <div class="header-option" id="authSection">
-            <a href="{{url_for('login')}}" style="text-decoration: none; color: white; cursor: pointer;" id="signInLink">
+            <a href="login.html" style="text-decoration: none; color: white; cursor: pointer;" id="signInLink">
               <span>Sign in</span>
             </a>
             <div class="user-profile" style="display: none; position: relative;">
@@ -1247,7 +1247,7 @@
         <div class="listings-grid">
           <div class="listings-grid-element">
             <div class="image">
-              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Taj Palace Restaurant" />
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Taj Palace Restaurant"  onclick="window.location.href='TajPalace.html';">
             </div>
             <div class="text">
               <div class="text-title">
@@ -1263,13 +1263,13 @@
             </div>
             <div class="text-lower">
               <div class="price">Free Delivery</div>
-              <span class="smallText">North Indian | South Indian | Pure Veg</span>
+              <span class="smallText">North Indian | South Indian | Non-Veg</span>
             </div>
           </div>
 
           <div class="listings-grid-element">
             <div class="image">
-              <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Punjab Grill" />
+              <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Punjab Grill" onclick="window.location.href='PunjabGrill.html';">
             </div>
             <div class="text">
               <div class="text-title">
@@ -1291,7 +1291,7 @@
 
           <div class="listings-grid-element">
             <div class="image">
-              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Dosa Plaza" />
+              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Dosa Plaza" onclick="window.location.href='DosaPlaza.html';">
             </div>
             <div class="text">
               <div class="text-title">
@@ -1307,13 +1307,13 @@
             </div>
             <div class="text-lower">
               <div class="price">Free Delivery</div>
-              <span class="smallText">South Indian | Pure Veg | Fast Food</span>
+              <span class="smallText">South Indian | Non-Veg | Fast Food</span>
             </div>
           </div>
 
           <div class="listings-grid-element">
             <div class="image">
-              <img src="https://images.unsplash.com/photo-1587899897387-091ebd01a6b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Biryani House" />
+              <img src="https://images.unsplash.com/photo-1587899897387-091ebd01a6b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Biryani House" onclick="window.location.href='BiryaniHouse.html';">
             </div>
             <div class="text">
               <div class="text-title">
@@ -1335,7 +1335,7 @@
 
           <div class="listings-grid-element" data-type="veg">
             <div class="image">
-              <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9" alt="Saravana Bhavan" />
+              <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9" alt="Saravana Bhavan" onclick="window.location.href='SarwanaBhawan.html';">
             </div>
             <div class="text">
               <div class="text-title">
@@ -1351,14 +1351,14 @@
             </div>
             <div class="text-lower">
               <div class="price">Free Delivery</div>
-              <span class="smallText">South Indian | Pure Veg | Authentic</span>
+              <span class="smallText">Indian | Pure Veg | Authentic</span>
             </div>
           </div>
 
           <div class="listings-grid-element" data-type="non-veg">
             <div class="image">
               <div class="veg-badge non-veg"></div>
-              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Mughals Kitchen" />
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Mughals Kitchen" onclick="window.location.href='MughalsKitchen.html';">
             </div>
             <div class="text">
               <div class="text-title">
@@ -1401,7 +1401,7 @@
           <div class="listings-grid-element" data-type="veg">
             <div class="image">
               <div class="veg-badge veg"></div>
-              <img src="https://www.giftacrossindia.com/media/catalog/product/new/GAICAK0331.jpg" alt="Chocolate Pastry" />
+              <img src="https://www.giftacrossindia.com/media/catalog/product/new/GAICAK0331.jpg" alt="Chocolate Pastry" >
             </div>
             <div class="text">
               <div class="text-title">
@@ -1697,11 +1697,9 @@
       </div>
     </div>
 
-    <div class="floating-cart">
-      <a href="{{url_for('cart')}}">
-        <i data-feather="shopping-cart"></i>
-        <div class="cart-count">0</div>
-      </a>
+    <div class="floating-cart" onclick="window.location.href='cart.html'">
+      <i data-feather="shopping-cart"></i>
+      <div class="cart-count">0</div>
     </div>
 
     <script src="https://unpkg.com/feather-icons"></script>

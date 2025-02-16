@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="menu.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <title>BiryaniHouse Menu</title>
+  
+</head>
+<body>
+    <header>
+    <div class="container">
+        <div class="logo-container">
+          <img src="1.png" alt="MunchExpress Logo" class="logo" onclick="window.location.href='index.html';">
+          <div class="brand-name">unchExpress</div>
+        </div>
+    </header>
+   </nav>
+    <div class="banner-container">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Restaurant Banner" class="banner">
+    </div>
+    <div class="header">
+        <!-- <img src=""  class="logo">  -->
+        <div class="header-content">
+            <h2 class="restro-name">Biryani House</h2>
+            <div class="search-filter-container">
+                <input type="text" class="search-bar" placeholder="Search in Restaurant">
+                <div class="filter-buttons">
+                    <button onclick="filterMenu('all')">All</button>
+                    <button class="veg" onclick="filterMenu('veg')">Veg</button>
+                    <button class="non-veg" onclick="filterMenu('non-veg')">Non-Veg</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="menu-container">
+        <div class="menu-item veg">
+            <img src="https://kannanskitchen.com/wp-content/uploads/2021/04/DSC_1079_1.jpg" alt="Chole Bhature">
+            <div class="menu-info">
+                <div class="menu-title">Veg Hyderabadi Biryani</div>
+                <p>Authentic taste of Hyderabad with a modern touch.</p>
+                <div class="menu-price">₹499</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Chole Bhature', 499)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://t4.ftcdn.net/jpg/04/18/22/71/360_F_418227121_mGoGy7ZE2jAkq07OnN599QU7PVuhVT57.jpg" alt="Cheesy Paneer Tikka">
+            <div class="menu-info">
+                <div class="menu-title">Veg Pulao</div>
+                <p>South India's most loved dish with a aesthetic look.</p>
+                <div class="menu-price">₹669</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Rajma Chawal', 669)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://t3.ftcdn.net/jpg/11/19/61/12/360_F_1119611210_HILd0dQ1VtzSn3L8z5wHjxII9Nlh7NJl.jpg" alt="Cheesy Mexican">
+            <div class="menu-info">
+                <div class="menu-title">Vada Sambhar</div>
+                <p>Old taste.Modern look with the same authentic taste</p>
+                <div class="menu-price">₹459</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Amritsari Kulcha', 459)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK63B0GlU6SASc3EXBh3Ip3pKRKqASVEzrIg&s" alt="Cheesy American BBQ">
+            <div class="menu-info">
+                <div class="menu-title">Plain Dosa</div>
+                <p>Health+Taste</p>
+                <div class="menu-price">₹159</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Palak Paneer', 159)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item non-veg">
+            <img src="https://www.licious.in/blog/wp-content/uploads/2022/06/mutton-hyderabadi-biryani-01.jpg" alt="Cheesy Chicken Tikka">
+            <div class="menu-info">
+                <div class="menu-title">Handi Biryani</div>
+                <p>Handi Biryani.</p>
+                <div class="menu-price">₹289</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Butter Chicken', 289)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item non-veg">
+            <img src="https://i.pinimg.com/736x/20/92/48/2092483fde63dc2c9e3f2a0038c8af1f.jpg" alt="Chicken Keema Melt">
+            <div class="menu-info">
+                <div class="menu-title">Non Veg Thali</div>
+                <p>Special non veg thali.</p>
+                <div class="menu-price">₹1299</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Fish Tikka', 1299)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item non-veg">
+            <img src="https://kitchenmai.com/wp-content/uploads/2020/08/chicken_beary_new_blog.jpg" alt="Cheesy Lamb Pepperoni">
+            <div class="menu-info">
+                <div class="menu-title">Beary Biryani</div>
+                <p>Chicken biryani with elegent flavours</p>
+                <div class="menu-price">₹399</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Chicken Tikka', 399)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item non-veg">
+            <img src="https://drop.ndtv.com/albums/COOKS/5-non-veg-south_637945968901459445/637945968919611327.jpeg" alt="Egg'n Chicken Melt">
+            <div class="menu-info">
+                <div class="menu-title">Chicken Channet</div>
+                <p>Chicken with South Indian flavours</p>
+                <div class="menu-price">₹199</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Kerala Chicken Roast', 199)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://t3.ftcdn.net/jpg/04/19/77/14/360_F_419771473_T13jOSeb0aBECVw1ekoQO3d0R4hxFHMY.jpg" alt="Cheesy American BBQ">
+            <div class="menu-info">
+                <div class="menu-title">Veg Sambhar</div>
+                <p>Health+Taste</p>
+                <div class="menu-price">₹559</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Makke di Roti,Sarson da Saag', 559)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item non-veg">
+            <img src="https://t4.ftcdn.net/jpg/09/28/82/47/360_F_928824793_tdXEOOB4ItBHAQZuxIVtc4CzsDCJgr07.jpg" alt="Cheesy Chicken Tikka">
+            <div class="menu-info">
+                <div class="menu-title">Bombay Biryani</div>
+                <p>Bombay style Biryani</p>
+                <div class="menu-price">₹579</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Chettinad Chicken', 579)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/32599/images/1d6186b-d38e-ae6b-117-10771d4ecdb_img_67_urad-dal-rice-uttapam-or-dosa_1534142211.jpg" alt="Cheesy American BBQ">
+            <div class="menu-info">
+                <div class="menu-title">Urad Dal Rice Uttapam</div>
+                <p>Authentic sout indian taste.</p>
+                <div class="menu-price">₹669</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Aaloo Parantha', 669)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item non-veg">
+            <img src="https://purendesi.in/wp-content/uploads/2024/12/Andhra-Style-Chicken-Biryani.jpg" alt="Cheesy Chicken Tikka">
+            <div class="menu-info">
+                <div class="menu-title">Hyderabadi Biryani</div>
+                <p>Hyderabad special</p>
+                <div class="menu-price">₹499</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Masala Dosa', 499)">Add +</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <button id="floating-cart-button" style="position:fixed; bottom:20px; right:20px; background-color:transparent; border:none; border-radius:50%; padding:15px; box-shadow:0 4px 8px rgba(0,0,0,0.2);">
+        <i data-feather="shopping-cart" style="color: green;"></i>
+    </button>
+    <script src="script.js"></script>
+</body>
+</html>

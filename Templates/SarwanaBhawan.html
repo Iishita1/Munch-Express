@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="menu.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <title>SarwanaBhawan Menu</title>
+  
+</head>
+<body>
+    <header>
+    <div class="container">
+        <div class="logo-container">
+          <img src="1.png" alt="MunchExpress Logo" class="logo" onclick="window.location.href='index.html';">
+          <div class="brand-name">unchExpress</div>
+        </div>
+    </header>
+   </nav>
+    <div class="banner-container">
+        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9" alt="Restaurant Banner" class="banner">
+    </div>
+    <div class="header">
+        <!-- <img src=""  class="logo">  -->
+        <div class="header-content">
+            <h2 class="restro-name">Sarvana Bhawan</h2>
+            <div class="search-filter-container">
+                <input type="text" class="search-bar" placeholder="Search in Restaurant">
+                <div class="filter-buttons">
+                    <button onclick="filterMenu('all')">All</button>
+                    <button class="veg" onclick="filterMenu('veg')">Veg</button>
+                    <button class="non-veg" onclick="filterMenu('non-veg')">Non-Veg</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="menu-container">
+        <div class="menu-item veg">
+            <img src="https://static.toiimg.com/thumb/60935758.cms?imgsize=669888&width=800&height=800" alt="Chole Bhature">
+            <div class="menu-info">
+                <div class="menu-title">Paneer Kofta</div>
+                <p>Authentic taste of Punjab with a modern touch.</p>
+                <div class="menu-price">₹499</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Chole Bhature', 499)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://www.secondrecipe.com/wp-content/uploads/2017/08/rajma-chawal-1.jpg" alt="Cheesy Paneer Tikka">
+            <div class="menu-info">
+                <div class="menu-title">Rajma Chawal</div>
+                <p>North India's most loved dish with a aesthetic look.</p>
+                <div class="menu-price">₹669</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Rajma Chawal', 669)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://sattvakitchen.com/wp-content/uploads/2024/05/CHOLE-CHAWAL-iStock-1917310235.jpg" alt="Cheesy Mexican">
+            <div class="menu-info">
+                <div class="menu-title">Chole Chawal</div>
+                <p>Old taste.Modern look with the same authentic taste</p>
+                <div class="menu-price">₹459</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Amritsari Kulcha', 459)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://healthynibblesandbits.com/wp-content/uploads/2020/01/Saag-Paneer-FF.jpg" alt="Cheesy American BBQ">
+            <div class="menu-info">
+                <div class="menu-title">Palak Paneer</div>
+                <p>Health+Taste with an authentic style.Served hot</p>
+                <div class="menu-price">₹159</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Palak Paneer', 159)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6bSpmG6GbOwP8-y5DxeaUm5AxWQG8-rOiYw&s" alt="Cheesy Chicken Tikka">
+            <div class="menu-info">
+                <div class="menu-title">Paneer Tikka</div>
+                <p>Made to perfection</p>
+                <div class="menu-price">₹289</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Butter Chicken', 289)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlxATEp1CGqHea1gWMln5jPIDjlw4yS09t2g&s" alt="Chicken Keema Melt">
+            <div class="menu-info">
+                <div class="menu-title">Chili Paneer</div>
+                <p>Special paneer cooked till perfection.</p>
+                <div class="menu-price">₹699</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Fish Tikka', 699)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGbwS_2N8BYNqDlEwA6C3TA0GKXV7QCBGBNg&s" alt="Cheesy Lamb Pepperoni">
+            <div class="menu-info">
+                <div class="menu-title">Mushroom Tikka</div>
+                <p>Hot chicken with elegent flavours</p>
+                <div class="menu-price">₹399</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Chicken Tikka', 399)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://www.yummytummyaarthi.com/wp-content/uploads/2016/03/1-33.jpg" alt="Egg'n Chicken Melt">
+            <div class="menu-info">
+                <div class="menu-title">Soya Chaamp Roast</div>
+                <p>Soya Chaap with South flavours</p>
+                <div class="menu-price">₹199</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Kerala Chicken Roast', 199)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://img.freepik.com/premium-photo/malai-kofta-curry-is-mughlai-special-recipe-served-bowl-selective-focus_466689-33336.jpg" alt="Cheesy American BBQ">
+            <div class="menu-info">
+                <div class="menu-title">Malai Kofta</div>
+                <p>Indian Taste</p>
+                <div class="menu-price">₹559</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Makke di Roti,Sarson da Saag', 559)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://www.cubesnjuliennes.com/wp-content/uploads/2020/03/Best-Kadai-Paneer-Recipe.jpg" alt="Cheesy Chicken Tikka">
+            <div class="menu-info">
+                <div class="menu-title">Kadai Paneer</div>
+                <p>Indian pepper paneer</p>
+                <div class="menu-price">₹579</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Chettinad Chicken', 579)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://media.istockphoto.com/id/1418692758/photo/north-indian-famous-food-aloo-paratha-with-mango-pickle-and-butter.jpg?s=612x612&w=0&k=20&c=JDbBS-5EcSOKUeossLW2NufdKE0Mg7zFZV5ZBLdbpUE=" alt="Cheesy American BBQ">
+            <div class="menu-info">
+                <div class="menu-title">Aaloo Parantha</div>
+                <p>Authentic punjabi taste.</p>
+                <div class="menu-price">₹669</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Aaloo Parantha', 669)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg?cs=srgb&dl=pexels-saveurssecretes-5560763.jpg&fm=jpg" alt="Cheesy Chicken Tikka">
+            <div class="menu-info">
+                <div class="menu-title">Masala Dosa</div>
+                <p>South Indian special</p>
+                <div class="menu-price">₹499</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Masala Dosa', 499)">Add +</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <button id="floating-cart-button" style="position:fixed; bottom:20px; right:20px; background-color:transparent; border:none; border-radius:50%; padding:15px; box-shadow:0 4px 8px rgba(0,0,0,0.2);">
+        <i data-feather="shopping-cart" style="color: green;"></i>
+    </button>
+    <script src="script.js"></script>
+</body>
+</html>
