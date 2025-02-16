@@ -1,0 +1,137 @@
+
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f8f8f8; }
+    .header { display: flex; align-items: center;padding: 10px;margin-right: 50px; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);}
+
+ .header-content {display: flex;flex-direction: column}
+
+ .restro-name {
+    margin: 0;
+    margin-left: 30px;
+    font-size: 40px;
+    
+    font-style: oblique;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    color: #1e0000;
+    /* text-shadow: 0 0 5px rgba(55, 74, 55, 0.9), 0 0 15px rgba(211, 244, 211, 0.7); */
+}
+
+
+ .search-bar {  padding: 10px; border: 1px solid #ccc; border-radius: 20px; transition: border 0.3s; font-size: 16px;width: 800px; margin-top: 5px; margin-left: 24px;/* Adjust spacing */}
+
+.banner { width: 95%; height: 500px; border-radius: 30px; margin-left: 40px; display: flex; overflow: hidden; justify-content: center; align-items: center; margin-top: 83px;}
+/* .header { display: flex; align-items: center; padding: 10px; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); } */
+.logo { width: 110px; height: 110px; border-radius: 70px; ; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  }
+/* .search-bar {  margin-right: 1500px;margin-top: 80px;padding: 10px; border: 1px solid #ccc; border-radius: 20px; transition: border 0.3s; font-size: 16px;width: 800px; } */
+.menu-container { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; padding: 20px; }
+.menu-item { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; width: 300px; }
+.menu-item img { width: 100%; height: 300px; object-fit: cover; }
+.menu-info { padding: 15px; }
+/* .h2 { font-size: 24px; margin: 0; margin-bottom: 70px;} */
+.menu-title { font-size: 18px; font-weight: bold; }
+.menu-price { color: rgb(29, 46, 42); font-size: 18px; margin: 10px 0; }
+.add-btn { background-color: #0d0c0c; color: white; padding: 10px; text-align: center; border-radius: 5px; cursor: pointer; }
+.filter-buttons { margin: 20px; display: flex; }
+.filter-buttons button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #000000;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.filter-buttons button:hover {
+    background-color: #000000;
+}
+.filter-buttons button.veg {
+    background-color: green;
+    color: white;
+}
+.filter-buttons button.non-veg {
+    background-color: red;
+    color: white;
+}
+.search-filter-container { display: flex; align-items: center; }
+
+
+
+header {
+    background-color: #1a1a1a;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+    .container {
+      display: flex;
+      align-items: center;
+      margin-left: 600px;
+    }
+
+    .logo-container {
+      position: relative;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+    }
+
+    .logo {
+      height: 100%;
+      width: 50px;
+      object-fit: contain;
+      z-index: 0;
+    }
+
+    .brand-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 28px;
+      letter-spacing: -0.8px;
+      color: #f8f8f8;
+      margin-left: -9px;
+      position: relative;
+      z-index: 2;
+    }
+
+    #floating-cart-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #09d36b; /* Green */
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+    }
+    
+    #cart-icon {
+        color: white;
+        width: 30px;
+        height: 30px;
+    }
+    
+    #cart-count {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: red;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 50%;
+        padding: 3px 7px;
+        display: none; /* Hide when 0 */
+    }
+    

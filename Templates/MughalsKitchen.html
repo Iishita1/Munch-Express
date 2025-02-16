@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="menu.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <title>MughalsKitchen Menu</title>
+  
+</head>
+<body>
+    <header>
+    <div class="container">
+        <div class="logo-container">
+          <img src="1.png" alt="MunchExpress Logo" class="logo" onclick="window.location.href='index.html';">
+          <div class="brand-name">unchExpress</div>
+        </div>
+    </header>
+   </nav>
+    <div class="banner-container">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Restaurant Banner" class="banner">
+    </div>
+    <div class="header">
+        <!-- <img src=""  class="logo">  -->
+        <div class="header-content">
+            <h2 class="restro-name">Mughals Kitchen</h2>
+            <div class="search-filter-container">
+                <input type="text" class="search-bar" placeholder="Search in Restaurant">
+                <div class="filter-buttons">
+                    <button onclick="filterMenu('all')">All</button>
+                    <button class="veg" onclick="filterMenu('veg')">Veg</button>
+                    <button class="non-veg" onclick="filterMenu('non-veg')">Non-Veg</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="menu-container">
+        <div class="menu-item veg">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSym-jXobbiKbwJjduxcTn93Ab90lLmTNreTg&s" alt="Chole Bhature">
+            <div class="menu-info">
+                <div class="menu-title">Shami Kebab</div>
+                <p>Authentic taste of mughals with a modern touch.</p>
+                <div class="menu-price">₹499</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Chole Bhature', 499)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnV3AhioHQnqye0hgkuYSCuerovwrpsZQOQw&s" alt="Cheesy Paneer Tikka">
+            <div class="menu-info">
+                <div class="menu-title">Dahi Kebab</div>
+                <p>India's most loved kebab with a aesthetic look.</p>
+                <div class="menu-price">₹669</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Rajma Chawal', 669)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://itsallgoodvegan.com/wp-content/uploads/2021/01/Primal-Kitchen-08.jpg" alt="Cheesy Mexican">
+            <div class="menu-info">
+                <div class="menu-title">Tofu Kebab</div>
+                <p>Old taste.Modern look with the same authentic taste</p>
+                <div class="menu-price">₹459</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Amritsari Kulcha', 459)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://bakefresh.net/wp-content/uploads/2024/03/IMG_8834-scaled-735x1102.jpg" alt="Cheesy American BBQ">
+            <div class="menu-info">
+                <div class="menu-title">Veg Seekh Kebab</div>
+                <p>Health+Taste</p>
+                <div class="menu-price">₹159</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Palak Paneer', 159)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item non-veg">
+            <img src="https://www.licious.in/blog/wp-content/uploads/2020/12/Chicken-Kebab.jpg" alt="Cheesy Chicken Tikka">
+            <div class="menu-info">
+                <div class="menu-title">Chicken Kebab</div>
+                <p>Made to perfection</p>
+                <div class="menu-price">₹289</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Butter Chicken', 289)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item non-veg">
+            <img src="https://www.licious.in/blog/wp-content/uploads/2022/06/fish-kebabs-final.jpg" alt="Chicken Keema Melt">
+            <div class="menu-info">
+                <div class="menu-title">Fish Kebab</div>
+                <p>Special tikka cooked till perfection.</p>
+                <div class="menu-price">₹699</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Fish Tikka', 699)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item non-veg">
+            <img src="https://foodiesterminal.com/wp-content/uploads/2019/04/Mutton-seekh-kabab-recipe-22.jpg" alt="Cheesy Lamb Pepperoni">
+            <div class="menu-info">
+                <div class="menu-title">Mutton Kebab</div>
+                <p>Hot mutton kebab with elegent flavours</p>
+                <div class="menu-price">₹399</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Chicken Tikka', 399)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item non-veg">
+            <img src="https://www.oliviascuisine.com/wp-content/uploads/2019/07/grilled-cheese-skewers-IG-720x720.jpg" alt="Egg'n Chicken Melt">
+            <div class="menu-info">
+                <div class="menu-title">Cheesy Chicken Kebab</div>
+                <p>Chicken with South Indian flavours</p>
+                <div class="menu-price">₹699</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Kerala Chicken Roast', 199)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPLldqET8-Ay2FacC6z3iM_PfKK1YA2QLx5g&s" alt="Cheesy American BBQ">
+            <div class="menu-info">
+                <div class="menu-title">Soya Kebab</div>
+                <p>Health+Taste</p>
+                <div class="menu-price">₹559</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Makke di Roti,Sarson da Saag', 559)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item non-veg">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt-4HbF-XvZ9Wis8dTgxNQ2677kqgX5HLaXA&s" alt="Cheesy Chicken Tikka">
+            <div class="menu-info">
+                <div class="menu-title">Chettinad Chicken Kebab</div>
+                <p>South Indian pepper chicken</p>
+                <div class="menu-price">₹579</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Chettinad Chicken', 579)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ2WY2YmIJtXrpmDToEHwJIOAcyBefjpFwXg&s" alt="Cheesy American BBQ">
+            <div class="menu-info">
+                <div class="menu-title">Paneer Tikka Kebab</div>
+                <p>Authentic punjabi taste.</p>
+                <div class="menu-price">₹669</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Aaloo Parantha', 669)">Add +</div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item veg">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl1Zd6PSAkbMUichi4VvGcCxTlHTo1kiedCQ&s" alt="Cheesy Chicken Tikka">
+            <div class="menu-info">
+                <div class="menu-title">Achari Kebab</div>
+                <p>South Indian special</p>
+                <div class="menu-price">₹499</div>
+                <div class="info">
+                    <div class="add-btn" onclick="addToCart('Masala Dosa', 499)">Add +</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <button id="floating-cart-button" style="position:fixed; bottom:20px; right:20px; background-color:transparent; border:none; border-radius:50%; padding:15px; box-shadow:0 4px 8px rgba(0,0,0,0.2);">
+        <i data-feather="shopping-cart" style="color: green;"></i>
+    </button>
+    <script src="script.js"></script>
+</body>
+</html>
