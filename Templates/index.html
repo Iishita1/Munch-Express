@@ -999,7 +999,7 @@
           <input type="text" class="search-input" placeholder="Search for dishes, restaurants..." />
           <div class="search-results"></div>
           <div class="header-option" id="authSection">
-            <a href="login.html" style="text-decoration: none; color: white; cursor: pointer;" id="signInLink">
+            <a href="{{url_for('login')}}" style="text-decoration: none; color: white; cursor: pointer;" id="signInLink">
               <span>Sign in</span>
             </a>
             <div class="user-profile" style="display: none; position: relative;">
@@ -1697,9 +1697,11 @@
       </div>
     </div>
 
-    <div class="floating-cart" onclick="window.location.href='cart.html'">
-      <i data-feather="shopping-cart"></i>
-      <div class="cart-count">0</div>
+    <div class="floating-cart">
+      <a href="{{url_for('cart')}}">
+        <i data-feather="shopping-cart"></i>
+        <div class="cart-count">0</div>
+      </a>
     </div>
 
     <script src="https://unpkg.com/feather-icons"></script>

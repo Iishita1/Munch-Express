@@ -584,7 +584,7 @@
                 event.target.reset();
 
                 setTimeout(() => {
-                    window.location.href = 'index.html';
+                    window.location.href = "{{url_for('index')}}";
                 }, 1500);
             }
         }
@@ -625,7 +625,7 @@
             
             setTimeout(() => {
                 const urlParams = new URLSearchParams(window.location.search);
-                const redirect = urlParams.get('redirect') || 'index.html';
+                const redirect = urlParams.get('redirect') || "{{url_for('index')}}";
                 window.location.href = redirect;
             }, 1500);
         }

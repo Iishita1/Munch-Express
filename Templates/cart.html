@@ -257,7 +257,7 @@
                     alert('Your cart is empty!');
                     return;
                 }
-                window.location.href = 'payment.html';
+                window.location.href = "{{url_for('payment')}}";
             });
 
             updateCart();
