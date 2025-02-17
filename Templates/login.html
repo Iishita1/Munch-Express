@@ -563,9 +563,8 @@
                     // Redirect to home page after a brief delay
                     setTimeout(() => {
                         window.location.href = '/';
-                    }, 1000);
+                    }, 1500);
                 } else {
-                    // Handle different error cases
                     if (data.error === 'email_not_found') {
                         errorEmail.textContent = 'No account found with this email';
                         errorEmail.style.display = 'block';
@@ -582,8 +581,6 @@
                 errorEmail.textContent = 'An error occurred. Please try again.';
                 errorEmail.style.display = 'block';
             }
-
-            return false;
         }
 
         // Function to check if user is already logged in
