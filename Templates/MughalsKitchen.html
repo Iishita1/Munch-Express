@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="menu.css">
-    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="../static/css/menu.css">
+    <script src="../static/js/script.js" defer></script>
+
     <title>MughalsKitchen Menu</title>
   
 </head>
@@ -12,10 +13,13 @@
     <header>
     <div class="container">
         <div class="logo-container">
-          <img src="1.png" alt="MunchExpress Logo" class="logo" onclick="window.location.href='index.html';">
+            <a href="{{url_for('index')}}">
+          <img src="1.jpg" alt="MunchExpress Logo" class="logo" >
           <div class="brand-name">unchExpress</div>
+        </a>
         </div>
     </header>
+    
    </nav>
     <div class="banner-container">
         <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Restaurant Banner" class="banner">

@@ -951,7 +951,7 @@
     <header>
       <div class="container">
         <div class="logo-container">
-          <img src="1.png" alt="MunchExpress Logo" class="logo">
+          <img src="1.jpg" alt="MunchExpress Logo" class="logo">
           <div class="brand-name">unchExpress</div>
         </div>
         <div class="location-dropdown">
@@ -999,7 +999,7 @@
           <input type="text" class="search-input" placeholder="Search for dishes, restaurants..." />
           <div class="search-results"></div>
           <div class="header-option" id="authSection">
-            <a href="login.html" style="text-decoration: none; color: white; cursor: pointer;" id="signInLink">
+            <a href="{{url_for('login')}}" style="text-decoration: none; color: white; cursor: pointer;" id="signInLink">
               <span>Sign in</span>
             </a>
             <div class="user-profile" style="display: none; position: relative;">
@@ -1246,8 +1246,9 @@
         </div>
         <div class="listings-grid">
           <div class="listings-grid-element">
+            <a href="{{url_for('taj')}}">
             <div class="image">
-              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Taj Palace Restaurant"  onclick="window.location.href='TajPalace.html';">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Taj Palace Restaurant" >
             </div>
             <div class="text">
               <div class="text-title">
@@ -1265,11 +1266,13 @@
               <div class="price">Free Delivery</div>
               <span class="smallText">North Indian | South Indian | Non-Veg</span>
             </div>
+            </a>
           </div>
 
           <div class="listings-grid-element">
+            <a href="{{url_for('punjab')}}">
             <div class="image">
-              <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Punjab Grill" onclick="window.location.href='PunjabGrill.html';">
+              <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Punjab Grill">
             </div>
             <div class="text">
               <div class="text-title">
@@ -1287,9 +1290,11 @@
               <div class="price">₹30 Delivery fee</div>
               <span class="smallText">North Indian | Mughlai | Non-Veg</span>
             </div>
+            </a>
           </div>
 
           <div class="listings-grid-element">
+            <a href="{{url_for('dosa')}}">
             <div class="image">
               <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Dosa Plaza" onclick="window.location.href='DosaPlaza.html';">
             </div>
@@ -1309,9 +1314,11 @@
               <div class="price">Free Delivery</div>
               <span class="smallText">South Indian | Non-Veg | Fast Food</span>
             </div>
+            </a>
           </div>
 
           <div class="listings-grid-element">
+            <a href="{{url_for('biryani')}}">
             <div class="image">
               <img src="https://images.unsplash.com/photo-1587899897387-091ebd01a6b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Biryani House" onclick="window.location.href='BiryaniHouse.html';">
             </div>
@@ -1331,11 +1338,13 @@
               <div class="price">₹40 Delivery fee</div>
               <span class="smallText">Hyderabadi | Mughlai | Non-Veg</span>
             </div>
+            </a>
           </div>
 
           <div class="listings-grid-element" data-type="veg">
+            <a href="{{url_for('sarwana')}}">
             <div class="image">
-              <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9" alt="Saravana Bhavan" onclick="window.location.href='SarwanaBhawan.html';">
+              <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9" alt="Saravana Bhavan">
             </div>
             <div class="text">
               <div class="text-title">
@@ -1353,9 +1362,11 @@
               <div class="price">Free Delivery</div>
               <span class="smallText">Indian | Pure Veg | Authentic</span>
             </div>
+            </a>
           </div>
 
           <div class="listings-grid-element" data-type="non-veg">
+            <a href="{{url_for('mughal')}}">
             <div class="image">
               <div class="veg-badge non-veg"></div>
               <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Mughals Kitchen" onclick="window.location.href='MughalsKitchen.html';">
@@ -1376,6 +1387,7 @@
               <div class="price">₹40 Delivery fee</div>
               <span class="smallText">Mughlai | Kebabs | Non-Veg</span>
             </div>
+            </a>
           </div>
         </div>
       </div>
@@ -1697,9 +1709,11 @@
       </div>
     </div>
 
-    <div class="floating-cart" onclick="window.location.href='cart.html'">
+    <div class="floating-cart">
+      <a href="{{url_for('cart')}}">
       <i data-feather="shopping-cart"></i>
       <div class="cart-count">0</div>
+    </a>
     </div>
 
     <script src="https://unpkg.com/feather-icons"></script>
