@@ -27,6 +27,10 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # Don't redirect if user is just viewing the login page
+    if request.method == 'GET':
+        return render_template('login.html')
+
     if request.method == 'POST':
         if request.is_json:
             data = request.get_json()
@@ -38,32 +42,32 @@ def login():
         
         user = User.query.filter_by(email=email).first()
         
-        if user and user.password == password:  # Note: In production, use proper password hashing
-            session['user_id'] = user.id
-            session['user_name'] = user.name
-            
-            # Return user data as JSON
+        if not user:
             return jsonify({
-                'success': True,
-                'user_id': user.id,
-                'name': user.name,
-                'email': user.email,
-                'message': 'Successfully logged in!'
-            })
-        else:
-            if not user:
-                return jsonify({
-                    'success': False,
-                    'error': 'email_not_found',
-                    'message': 'No account found with this email'
-                }), 401
-            else:
-                return jsonify({
-                    'success': False,
-                    'error': 'invalid_password',
-                    'message': 'Incorrect password'
-                }), 401
-    
+                'success': False,
+                'error': 'email_not_found',
+                'message': 'No account found with this email'
+            }), 401
+            
+        if user.password != password:  # Note: In production, use proper password hashing
+            return jsonify({
+                'success': False,
+                'error': 'invalid_password',
+                'message': 'Incorrect password'
+            }), 401
+            
+        # Login successful
+        session['user_id'] = user.id
+        session['user_name'] = user.name
+        
+        return jsonify({
+            'success': True,
+            'user_id': user.id,
+            'name': user.name,
+            'email': user.email,
+            'message': 'Successfully logged in!'
+        })
+
     return render_template('login.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
