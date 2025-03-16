@@ -1,147 +1,126 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
+from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_wtf.csrf import CSRFProtect
+
+
 
 app = Flask(__name__)
-app.secret_key = 'mini'  # Required for session management
-
-# Database configuration (SQLite)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SECRET_KEY'] = 'your_secret_key'
+csrf = CSRFProtect(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  # SQLite database
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Initialize database and migration
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+# Initialize Flask-Login
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'  # Route to redirect unauthorized users
 
 # User model
-class User(db.Model):
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
 
-# Create the database and tables
-with app.app_context():
-    db.create_all()
+    def __repr__(self):
+        return f"User('{self.name}', '{self.email}')"
 
-# ROUTING
+# Load user for Flask-Login
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+# Routes
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', user=current_user)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login/', methods=['GET', 'POST'])
 def login():
-    # Don't redirect if user is just viewing the login page
-    if request.method == 'GET':
-        return render_template('login.html')
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
 
     if request.method == 'POST':
-        if request.is_json:
-            data = request.get_json()
-            email = data.get('email')
-            password = data.get('password')
-        else:
-            email = request.form.get('email')
-            password = request.form.get('password')
-        
+        email = request.form.get('loginEmail')
+        password = request.form.get('loginPassword')
         user = User.query.filter_by(email=email).first()
-        
-        if not user:
-            return jsonify({
-                'success': False,
-                'error': 'email_not_found',
-                'message': 'No account found with this email'
-            }), 401
-            
-        if user.password != password:  # Note: In production, use proper password hashing
-            return jsonify({
-                'success': False,
-                'error': 'invalid_password',
-                'message': 'Incorrect password'
-            }), 401
-            
-        # Login successful
-        session['user_id'] = user.id
-        session['user_name'] = user.name
-        
-        return jsonify({
-            'success': True,
-            'user_id': user.id,
-            'name': user.name,
-            'email': user.email,
-            'message': 'Successfully logged in!'
-        })
-
+        if user and user.password == password:
+            login_user(user)  # Log in the user
+            flash('Successfully logged in!', 'success')
+            return redirect(url_for('index'))
+        else:
+            flash('Invalid email or password', 'error')
     return render_template('login.html')
 
-@app.route('/signup', methods=['GET', 'POST'])
+
+@app.route('/signup/', methods=['GET', 'POST'])
 def signup():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
-        
-        # Basic validation
-        if not name or not email or not password:
-            flash('All fields are required', 'error')
-            return redirect(url_for('login'))
-            
-        if len(password) < 8:
-            flash('Password must be at least 8 characters', 'error')
-            return redirect(url_for('login'))
-            
+        name = request.form.get('signupName')
+        email = request.form.get('signupEmail')
+        password = request.form.get('signupPassword')
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
-            flash('An account with this email already exists', 'error')
-            return redirect(url_for('login'))
-            
-        try:
-            new_user = User(name=name, email=email, password=password)  # Note: In production, hash the password
+            flash('Email already registered', 'error')
+        else:
+            new_user = User(name=name, email=email, password=password)
             db.session.add(new_user)
             db.session.commit()
-            flash('Account created successfully! Please login.', 'success')
+            flash('Account created successfully!', 'success')
             return redirect(url_for('login'))
-        except Exception as e:
-            db.session.rollback()
-            flash('An error occurred. Please try again.', 'error')
-            return redirect(url_for('login'))
-            
-    return redirect(url_for('login'))
+    return render_template('login.html')
 
-@app.route('/logout')
+@app.route('/logout', methods=['POST'])
+@login_required
 def logout():
-    session.clear()
-    flash('You have been logged out', 'success')
-    return redirect(url_for('login'))
+    logout_user()
+    flash('Logged out successfully!', 'success')
+    return redirect(url_for('index'))
 
-@app.route('/cart')
+@app.route('/cart/')
+@login_required
 def cart():
-    return render_template('cart.html')
+    return render_template('cart.html', user=current_user)
 
-@app.route('/payment')
+@app.route('/payment/')
+@login_required
 def payment():
-    return render_template('payment.html')
+    return render_template('payment.html', user=current_user)
 
-@app.route('/taj')
-def taj():
-    return render_template('TajPalace.html')
+# Restaurant pages
+@app.route('/one')
+def BH():
+    return render_template('BiryaniHouse.html', user=current_user)
 
-@app.route('/punjab')
-def punjab():
-    return render_template('PunjabGrill.html')
+@app.route('/two')
+def DP():
+    return render_template('DosaPlaza.html', user=current_user)
 
-@app.route('/dosa')
-def dosa():
-    return render_template('DosaPlaza.html')
+@app.route('/three')
+def MK():
+    return render_template('MughalsKitchen.html', user=current_user)
 
-@app.route('/biryani')
-def biryani():
-    return render_template('BiryaniHouse.html')
+@app.route('/four')
+def PG():
+    return render_template('PunjabGrill.html', user=current_user)
 
-@app.route('/sarwana')
-def sarwana():
-    return render_template('SarwanaBhawan.html')
+@app.route('/five')
+def TP():
+    return render_template('TajPalace.html', user=current_user)
 
-@app.route('/mughal')
-def mughal():
-    return render_template('MughalsKitchen.html')
+@app.route('/six')
+def SB():
+    return render_template('SarwanaBhawan.html', user=current_user)
 
-# Run app
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()  # Create database tables if they don't exist
     app.run(debug=True)
