@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function redirectToCart() {
-    window.location.href = "cart.html"; // Redirect to cart page
+    window.location.href = "/cart"; // Redirect to cart page
 }
 
 // Function to add an item to the cart
