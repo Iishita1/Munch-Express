@@ -341,9 +341,9 @@
     <div class="header">
         <div class="header-content">
             <div class="logo-container">
-                <img src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742133484/1_cyopmr.jpg" alt="MunchExpress Logo" class="logo">
+                <img src="1.png" alt="MunchExpress Logo" class="logo">
             </div>
-            <div class="brand-name">MunchExpress</div>
+            <div class="brand-name">unchExpress</div>
         </div>
     </div>
 
@@ -394,7 +394,7 @@
             const phoneError = document.getElementById('phoneError');
 
             if (cart.length === 0) {
-                window.location.href = "{{url_for('cart')}}";
+                window.location.href = 'cart.html';
                 return;
             }
 
@@ -438,7 +438,7 @@
                     handler: function (response) {
                         alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
                         localStorage.removeItem('cart');
-                        window.location.href = "{{url_for('index')}}";
+                        window.location.href = 'index.html';
                     },
                     prefill: {
                         contact: phone

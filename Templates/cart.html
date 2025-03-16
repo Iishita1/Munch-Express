@@ -16,16 +16,19 @@
             box-sizing: border-box;
         }
         body {
+            margin-top: 90px;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
             background-color: #f8f9fa;
         }
         header {
+            height: 70px;
             background-color: #1a1a1a;
             color: white;
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 20px;
         }
         .logo {
             font-size: 1.5rem;
@@ -162,9 +165,9 @@
     <div class="header">
         <div class="header-content">
             <div class="logo-container">
-                <img src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742133484/1_cyopmr.jpg" alt="MunchExpress Logo" class="logo">
+                <img src="1.png" alt="MunchExpress Logo" class="logo">
             </div>
-            <div class="brand-name">MunchExpress</div>
+            <div class="brand-name">unchExpress</div>
         </div>
     </div>
 
@@ -257,7 +260,7 @@
                     alert('Your cart is empty!');
                     return;
                 }
-                window.location.href = "{{url_for('payment')}}";
+                window.location.href = '/payment';
             });
 
             updateCart();
