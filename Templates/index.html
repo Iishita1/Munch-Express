@@ -1740,6 +1740,47 @@ a:hover {
       const searchResults = document.getElementById('searchResults');
       let searchTimeout = null;
 
+      // Add filter functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.options-btn[data-filter]');
+        const listings = document.querySelectorAll('.listings-grid-element');
+        let currentFilter = null;
+
+        filterButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            const filterValue = this.getAttribute('data-filter');
+            
+            // If clicking the same filter button again, show all items
+            if (currentFilter === filterValue) {
+              // Remove selected class from all buttons
+              filterButtons.forEach(btn => btn.classList.remove('selected'));
+              // Show all listings
+              listings.forEach(listing => {
+                listing.style.display = 'block';
+              });
+              currentFilter = null;
+              return;
+            }
+
+            // Remove selected class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('selected'));
+            // Add selected class to clicked button
+            this.classList.add('selected');
+
+            // Filter listings
+            listings.forEach(listing => {
+              if (listing.getAttribute('data-type') === filterValue) {
+                listing.style.display = 'block';
+              } else {
+                listing.style.display = 'none';
+              }
+            });
+            
+            currentFilter = filterValue;
+          });
+        });
+      });
+
       // Toggle dropdown
       locationOption.addEventListener('click', (e) => {
           e.stopPropagation();
