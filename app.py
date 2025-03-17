@@ -3,8 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_wtf.csrf import CSRFProtect
-
-
+from db import db, migrate
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
@@ -13,8 +12,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  # SQLite database
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize database and migration
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+db.init_app(app)
+migrate.init_app(app, db)
+
+# Import models after initializing db
+from models import TajPalace, SarwaanaBhawan, MughalsKitchen, PunjabGrill, DosaPlaza, BiryaniHouse, Baarista
 
 # Initialize Flask-Login
 login_manager = LoginManager(app)
