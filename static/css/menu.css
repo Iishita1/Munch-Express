@@ -79,7 +79,7 @@ header {
       height: 50px;
       display: flex;
       align-items: center;
-      margin-left: 110px;
+      margin-left: 10px;
     }
 
     .logo {
@@ -97,8 +97,7 @@ header {
       color: #f8f8f8;
       margin-left: -9px;
       position: relative;
-      /* z-index: 2; */
-      text-decoration: none;
+      z-index: 2;
     }
 
     #floating-cart-button {

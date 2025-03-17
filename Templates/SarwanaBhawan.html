@@ -14,9 +14,10 @@
     <div class="container">
         <div class="logo-container">
             <a href="{{url_for('index')}}">
-          <img src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742133484/1_cyopmr.jpg" alt="MunchExpress Logo" class="logo" >
-          <div class="brand-name">unchExpress</div>
-        </a>
+
+          <img src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742133484/1_cyopmr.jpg" alt="MunchExpress Logo" class="logo" ></a>
+              <div class="brand-name">unchExpress</div>
+            
         </div>
     </header>
    </nav>
@@ -179,5 +180,9 @@
         <i data-feather="shopping-cart" style="color: green;"></i>
     </button>
     <script src="script.js"></script>
+    <button id="floating-cart-button" onclick="redirectToCart()">
+        <i data-feather="shopping-cart" id="cart-icon"></i>
+        <span id="cart-count">0</span>
+    </button>
 </body>
 </html>
