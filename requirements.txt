@@ -1,0 +1,5 @@
+Flask>=2.2
+Flask-sqlalchemy
+Flask-migrate
+Flask-login
+Flask-wtf
