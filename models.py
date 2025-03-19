@@ -62,3 +62,10 @@ class MughalsKitchen(db.Model):
     dish_description = db.Column(db.String(100), nullable=False)
     dish_category = db.Column(db.String(100), nullable=False)
     dish_rating = db.Column(db.Float, nullable=False)
+
+class Restaurant(db.Model):
+    resturant_id = db.Column(db.Integer, primary_key=True)
+    resturant_name = db.Column(db.String(100), nullable=False)
+    resturant_image = db.Column(db.String(100), nullable=False)
+    resturant_description = db.Column(db.String(100), nullable=False)
+    resturant_rating = db.Column(db.Float, nullable=False)

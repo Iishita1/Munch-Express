@@ -16,7 +16,7 @@ db.init_app(app)
 migrate.init_app(app, db)
 
 # Import models after initializing db
-from models import TajPalace, SarwaanaBhawan, MughalsKitchen, PunjabGrill, DosaPlaza, BiryaniHouse, Baarista
+from models import TajPalace, SarwaanaBhawan, MughalsKitchen, PunjabGrill, DosaPlaza, BiryaniHouse, Baarista, Restaurant
 
 # Initialize Flask-Login
 login_manager = LoginManager(app)

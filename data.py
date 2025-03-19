@@ -1,5 +1,5 @@
 from app import app, db
-from models import TajPalace, SarwaanaBhawan, PunjabGrill, DosaPlaza, BiryaniHouse, Baarista, MughalsKitchen
+from models import TajPalace, SarwaanaBhawan, PunjabGrill, DosaPlaza, BiryaniHouse, Baarista, MughalsKitchen, Restaurant
 
 with app.app_context():
     # Dishes for TajPalace
@@ -734,6 +734,45 @@ with app.app_context():
         )
     ]
 
+    new_restaurants = [
+        Restaurant(
+            resturant_name='Taj Palace',
+            resturant_image='https://sumesshmenonassociates.com/wp-content/uploads/2020/10/talli-turmeric-banner-1.jpg',
+            resturant_description='GRANDEUR WITH AMAZING FOOD',
+            resturant_rating=4.5
+        ),
+        Restaurant(
+            resturant_name='Sarwaana Bhawan',
+            resturant_image='https://images.unsplash.com/photo-1552566626-52f8b828add9',
+            resturant_description='Essence of Indian Food right to your plate',
+            resturant_rating=4.5
+        ),
+        Restaurant(
+            resturant_name='Punjab Grill',
+            resturant_image='https://cache.marriott.com/content/dam/marriott-renditions/IXCJW/ixcjw-brewhouse-1621-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*',
+            resturant_description='classic Punjabi making what classic Punjabi likes',
+            resturant_rating=4.5
+        ),
+        Restaurant(
+            resturant_name='Dosa Plaza',
+            resturant_image='https://www.architectandinteriorsindia.com/cloud/2021/11/15/Story-3-1.gif',
+            resturant_description='south Indian dosa , south Indian style',
+            resturant_rating=4.5
+        ),
+        Restaurant(
+            resturant_name='Biryani House',
+            resturant_image='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4',
+            resturant_description='BIRYANI right from the past to your plate',
+            resturant_rating=4.5
+        ),
+        Restaurant(
+            resturant_name='Mughals Kitchen',
+            resturant_image='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4',
+            resturant_description='taste what was Mughal food in its original form',
+            resturant_rating=4.5
+        )
+    ]
+
     # Save all objects to the database
     db.session.bulk_save_objects(new_dish_tajpalace)
     db.session.bulk_save_objects(new_dish_sarwaana)
@@ -742,6 +781,7 @@ with app.app_context():
     db.session.bulk_save_objects(new_dish_biryanihouse)
     db.session.bulk_save_objects(new_dish_baarista)
     db.session.bulk_save_objects(new_dish_mughalskitchen)
+    db.session.bulk_save_objects(new_restaurants)
     db.session.commit()
 
     # Verify the data
