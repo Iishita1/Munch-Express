@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, request
+from flask import Flask, render_template, redirect, url_for, flash, request, request,session
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -47,21 +47,20 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
 
-    if request.method == 'POST':  
+    if request.method == 'POST':
         email = request.form.get('loginEmail')
         password = request.form.get('loginPassword')
         user = User.query.filter_by(email=email).first()
 
         if user and user.password == password:
             login_user(user)
-            flash('Successfully logged in!', 'success')  # Green color
-            return redirect(url_for('index'))  # Ensure correct indentation
-    
-        else:  # No indentation issue
-            flash('Invalid email or password', 'danger')  # Red color
-    
-    return render_template('login.html')  # Ensure this is correctly indented
+            flash('Successfully logged in!', 'success')  
+            return redirect(url_for('index'))  # Redirect to remove flash message from session
+        
+        else:
+            flash('Invalid email or password', 'danger')
 
+    return render_template('login.html')
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
@@ -83,12 +82,14 @@ def signup():
             return redirect(url_for('login'))
     return render_template('login.html')
 
-@app.route('/logout', methods=['POST'])
-@login_required
+@app.route('/logout/', methods=['GET', 'POST'])
 def logout():
     logout_user()
-    flash('Logged out successfully!', 'success')
-    return redirect(url_for('index'))
+    session.pop('_flashes', None)  # Clears old flash messages
+    flash('Logged out successfully!', 'info')
+    return redirect(url_for('login'))
+
+
 
 @app.route('/cart/')
 @login_required
