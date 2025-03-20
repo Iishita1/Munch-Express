@@ -47,17 +47,20 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
 
-    if request.method == 'POST':
+    if request.method == 'POST':  
         email = request.form.get('loginEmail')
         password = request.form.get('loginPassword')
         user = User.query.filter_by(email=email).first()
+
         if user and user.password == password:
-            login_user(user)  # Log in the user
-            flash('Successfully logged in!', 'success')
-            return redirect(url_for('index'))
-        else:
-            flash('Invalid email or password', 'error')
-    return render_template('login.html')
+            login_user(user)
+            flash('Successfully logged in!', 'success')  # Green color
+            return redirect(url_for('index'))  # Ensure correct indentation
+    
+        else:  # No indentation issue
+            flash('Invalid email or password', 'danger')  # Red color
+    
+    return render_template('login.html')  # Ensure this is correctly indented
 
 
 @app.route('/signup/', methods=['GET', 'POST'])
