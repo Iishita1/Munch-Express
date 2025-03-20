@@ -1059,14 +1059,8 @@ a:hover {
           </button>
         </div>
         <div class="toggle-group">
-          <button class="options-btn veg" data-filter="veg">
-            <div class="diet-indicator veg"></div>
-            <span>Veg</span>
-          </button>
-          <button class="options-btn non-veg" data-filter="non-veg">
-            <div class="diet-indicator non-veg"></div>
-            <span>Non-Veg</span>
-          </button>
+          <button class="options-btn veg" data-filter="veg">Veg</button>
+          <button class="options-btn non-veg" data-filter="non-veg">Non-Veg</button>
         </div>
       </div>
     </div>
@@ -1783,7 +1777,7 @@ a:hover {
     </script>
 
     <script>
-      // Global variables for location feature
+      
       const locationDropdown = document.getElementById('locationDropdown');
       const locationOption = document.getElementById('locationOption');
       const locationText = document.getElementById('currentLocation');
@@ -1791,7 +1785,6 @@ a:hover {
       const searchResults = document.getElementById('searchResults');
       let searchTimeout = null;
 
-      // Toggle dropdown
       locationOption.addEventListener('click', (e) => {
           e.stopPropagation();
           locationDropdown.classList.toggle('show');
@@ -1800,32 +1793,26 @@ a:hover {
           }
       });
 
-      // Close dropdown when clicking outside
       document.addEventListener('click', (e) => {
           if (!locationDropdown.contains(e.target) && !locationOption.contains(e.target)) {
               locationDropdown.classList.remove('show');
           }
       });
 
-      // Handle search input with debouncing
       function handleSearchKeyup(event) {
         const query = event.target.value.trim();
         
-        // Clear previous timeout
         if (searchTimeout) {
           clearTimeout(searchTimeout);
         }
 
-        // Clear results if query is empty
         if (!query) {
           searchResults.innerHTML = '';
           return;
         }
 
-        // Show loading state
         searchResults.innerHTML = '<div class="loading-text">Searching...</div>';
 
-        // Set new timeout for search
         searchTimeout = setTimeout(() => {
           searchLocation(query);
         }, 500);
@@ -2196,6 +2183,65 @@ a:hover {
         }
       `;
       document.head.appendChild(style);
+    </script>
+
+    <script>
+      // Add this function to filter listings based on selected diet type
+      function filterListings() {
+          const vegButton = document.querySelector('.options-btn.veg');
+          const nonVegButton = document.querySelector('.options-btn.non-veg');
+          const listings = document.querySelectorAll('.listings-grid-element');
+
+          // Get the current filter state
+          const isVegSelected = vegButton.classList.contains('selected');
+          const isNonVegSelected = nonVegButton.classList.contains('selected');
+
+          listings.forEach(listing => {
+              const type = listing.getAttribute('data-type');
+
+              // Show or hide listings based on selected filters
+              if ((isVegSelected && type === 'veg') || (isNonVegSelected && type === 'non-veg')) {
+                  listing.style.display = 'block'; // Show listing
+              } else {
+                  listing.style.display = 'none'; // Hide listing
+              }
+          });
+      }
+
+      // Add event listeners to filter buttons
+      document.querySelector('.options-btn.veg').addEventListener('click', function() {
+          const isSelected = this.classList.toggle('selected'); // Toggle selected class
+          document.querySelector('.options-btn.non-veg').classList.remove('selected'); // Deselect non-veg
+
+          if (isSelected) {
+              // If veg is selected, filter listings
+              filterListings();
+          } else {
+              // If veg is deselected, show all listings
+              showAllListings();
+          }
+      });
+
+      document.querySelector('.options-btn.non-veg').addEventListener('click', function() {
+          const isSelected = this.classList.toggle('selected'); // Toggle selected class
+          document.querySelector('.options-btn.veg').classList.remove('selected'); // Deselect veg
+
+          if (isSelected) {
+              // If non-veg is selected, filter listings
+              filterListings();
+          } else {
+              // If non-veg is deselected, show all listings
+              showAllListings();
+          }
+      });
+
+      // Function to show all listings
+      function showAllListings() {
+          const listings = document.querySelectorAll('.listings-grid-element');
+          listings.forEach(listing => {
+              listing.style.display = 'block'; // Show all listings
+          });
+      }
     </script>
   </body>
   <footer class="footer">
