@@ -6,20 +6,13 @@
     <link rel="stylesheet" href="../static/css/menu.css">
     <script src="../static/js/script.js" defer></script>
     
+    <link rel="stylesheet" href="../static/css/header.css">
+    
     <title>Hotel Taj Menu</title>
   
 </head>
 <body>
-    <header>
-    <div class="container">
-        <div class="logo-container">
-            <a href="{{url_for('index')}}">
-
-          <img src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742133484/1_cyopmr.jpg" alt="MunchExpress Logo" class="logo" ></a>
-              <div class="brand-name">unchExpress</div>
-            
-        </div>
-    </header>
+    {%include 'header.html'%}
    </nav>
     <div class="banner-container">
         <img src="https://sumesshmenonassociates.com/wp-content/uploads/2020/10/talli-turmeric-banner-1.jpg" alt="Restaurant Banner" class="banner">

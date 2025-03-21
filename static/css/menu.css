@@ -1,9 +1,5 @@
 
 body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f8f8f8; }
-    .header { display: flex; align-items: center;padding: 10px;margin-right: 50px; background-color: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);}
-
- .header-content {display: flex;flex-direction: column}
-
  .restro-name {
     margin: 0;
     margin-left: 30px;
@@ -58,47 +54,6 @@ body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: 
 }
 .search-filter-container { display: flex; align-items: center; }
 
-
-
-header {
-    background-color: #1a1a1a;
-    padding: 1rem 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-    .container {
-      display: flex;
-      align-items: center;
-      margin-left: 600px;
-    }
-
-    .logo-container {
-      position: relative;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      margin-left: 10px;
-    }
-
-    .logo {
-      height: 100%;
-      width: 50px;
-      object-fit: contain;
-      z-index: 0;
-    }
-
-    .brand-name {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 28px;
-      letter-spacing: -0.8px;
-      color: #f8f8f8;
-      margin-left: -9px;
-      position: relative;
-      z-index: 2;
-    }
 
     #floating-cart-button {
         position: fixed;

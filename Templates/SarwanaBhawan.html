@@ -5,21 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/menu.css">
     <script src="../static/js/script.js" defer></script>
+    <link rel="stylesheet" href="../static/css/header.css">
     
     <title>SarwanaBhawan Menu</title>
   
 </head>
 <body>
-    <header>
-    <div class="container">
-        <div class="logo-container">
-            <a href="{{url_for('index')}}">
-
-          <img src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742133484/1_cyopmr.jpg" alt="MunchExpress Logo" class="logo" ></a>
-              <div class="brand-name">unchExpress</div>
-            
-        </div>
-    </header>
+    {%include 'header.html'%}
    </nav>
     <div class="banner-container">
         <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9" alt="Restaurant Banner" class="banner">

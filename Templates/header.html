@@ -1,0 +1,252 @@
+<header>
+    <div class="container">
+      <div class="logo-container">
+        <img src="https://res.cloudinary.com/dsmrhr0lx/image/upload/v1742133484/1_cyopmr.jpg" alt="MunchExpress Logo" class="logo">
+        <div class="brand-name">unchExpress</div>
+      </div>
+      <div class="location-dropdown">
+        <div class="header-option" id="locationOption">
+          <i class="fas fa-map-marker-alt"></i>
+          <span id="currentLocation">Select your location</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="location-dropdown-content" id="locationDropdown">
+          <!-- Search Location Option -->
+          <div class="location-search-container">
+            <input type="text" 
+                   class="location-search-input" 
+                   id="locationSearch" 
+                   placeholder="Enter city, area, or street name"
+                   onkeyup="handleSearchKeyup(event)">
+            <button class="search-button" onclick="handleSearchClick()">
+              <i class="fas fa-search"></i>
+              Search Location
+            </button>
+            <div id="searchResults"></div>
+          </div>
+  
+          <div class="location-divider">
+            <span>OR</span>
+          </div>
+  
+          <!-- Detect Location Option -->
+          <div class="location-option" onclick="detectCurrentLocation()">
+            <i class="fas fa-location-crosshairs"></i>
+            <div>
+              <div>Detect current location</div>
+              <div class="smallText">Using GPS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="currentDetails">
+        <div class="header-option">
+          <i data-feather="clock"></i>
+          <span>Deliver now</span>
+        </div>
+      </div>
+      <div class="searchBar">
+        <div class="header-option" id="authSection">
+          {% if current_user.is_authenticated %}
+            <div class="user-profile" style="display: flex; align-items: center; cursor: pointer;">
+              <i data-feather="user" style="margin-right: 8px;"></i>
+              <span id="userName">{{ current_user.name }}</span>
+              <div class="profile-dropdown" style="display: none; position: absolute; top: 100%; right: 0; background: white; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 8px; min-width: 150px;">
+                <div style="padding: 12px; border-bottom: 1px solid #eee;">
+                  <div id="userNameFull" style="font-weight: 500; color: #333;">{{ current_user.name }}</div>
+                  <div id="userEmail" style="font-size: 0.8rem; color: #666; margin-top: 4px;">{{ current_user.email }}</div>
+                </div>
+                <form action="{{ url_for('logout') }}" method="POST" style="margin: 0;">
+                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                  <button type="submit" style="padding: 12px; color: #e74c3c; cursor: pointer; font-weight: 500; background: none; border: none; width: 100%; text-align: left;">
+                    Logout
+                  </button>
+                </form>
+              </div>
+            </div>
+          {% else %}
+            <a href="{{ url_for('login') }}" style="text-decoration: none; color: white; cursor: pointer;" id="signInLink">
+              <span>Sign in</span>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </header>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const userProfile = document.querySelector('.user-profile');
+  const profileDropdown = document.querySelector('.profile-dropdown');
+  
+  if (userProfile) {
+    userProfile.addEventListener('click', function(e) {
+      e.stopPropagation();
+      profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+  
+    document.addEventListener('click', function() {
+      profileDropdown.style.display = 'none';
+    });
+  }
+  });
+  </script>
+  
+  <script>
+    // Add this new code for search functionality
+    function handleSearchInput(event) {
+      const searchQuery = event.target.value.toLowerCase().trim();
+      const searchResults = document.querySelector('.search-results');
+      const listings = document.querySelectorAll('.listings-grid-element');
+      
+      // Clear previous results
+      searchResults.innerHTML = '';
+      
+      if (searchQuery.length < 2) {
+        searchResults.style.display = 'none';
+        return;
+      }
+  
+      // Show loading state
+      searchResults.style.display = 'block';
+      searchResults.innerHTML = '<div class="loading-text">Searching...</div>';
+  
+      // Filter listings based on search query
+      const matchingItems = Array.from(listings).filter(listing => {
+        const title = listing.querySelector('h3').textContent.toLowerCase();
+        const description = listing.querySelector('.smallText').textContent.toLowerCase();
+        return title.includes(searchQuery) || description.includes(searchQuery);
+      });
+  
+      // Update search results
+      if (matchingItems.length > 0) {
+        searchResults.innerHTML = matchingItems.map(item => {
+          const title = item.querySelector('h3').textContent;
+          const description = item.querySelector('.smallText').textContent;
+          const price = item.querySelector('.price').textContent;
+          const image = item.querySelector('img').src;
+          const isVeg = item.querySelector('.veg-badge.veg') !== null;
+          
+          return `
+            <div class="search-item" onclick="scrollToItem(this)">
+              <img src="${image}" alt="${title}">
+              <div class="item-details">
+                <h4>${title}</h4>
+                <div class="item-meta">${description}</div>
+              </div>
+              <div class="item-price">${price}</div>
+            </div>
+          `;
+        }).join('');
+      } else {
+        searchResults.innerHTML = '<div class="no-results">No items found matching your search</div>';
+      }
+    }
+  
+    function scrollToItem(element) {
+      const searchQuery = document.querySelector('.search-input').value.toLowerCase();
+      const listings = document.querySelectorAll('.listings-grid-element');
+      
+      // Find the matching listing
+      const matchingListing = Array.from(listings).find(listing => {
+        const title = listing.querySelector('h3').textContent.toLowerCase();
+        return title === element.querySelector('h4').textContent.toLowerCase();
+      });
+  
+      if (matchingListing) {
+        // Scroll to the listing
+        matchingListing.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Add highlight effect
+        matchingListing.style.backgroundColor = '#f8f8f8';
+        setTimeout(() => {
+          matchingListing.style.backgroundColor = '';
+        }, 2000);
+      }
+  
+      // Clear search and hide results
+      document.querySelector('.search-input').value = '';
+      document.querySelector('.search-results').style.display = 'none';
+    }
+  
+    // Close search results when clicking outside
+    document.addEventListener('click', (e) => {
+      const searchBar = document.querySelector('.searchBar');
+      const searchResults = document.querySelector('.search-results');
+      
+      if (!searchBar.contains(e.target)) {
+        searchResults.style.display = 'none';
+      }
+    });
+  
+    // Add styles for search results
+    const style = document.createElement('style');
+    style.textContent = `
+      .search-results {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin-top: 0.5rem;
+        max-height: 400px;
+        overflow-y: auto;
+        display: none;
+        z-index: 1000;
+      }
+  
+      .search-item {
+        padding: 1rem;
+        border-bottom: 1px solid var(--color-grey);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+  
+      .search-item:hover {
+        background: var(--color-grey);
+      }
+  
+      .search-item img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+  
+      .search-item .item-details {
+        flex: 1;
+      }
+  
+      .search-item .item-details h4 {
+        margin: 0 0 0.25rem 0;
+        font-weight: 500;
+      }
+  
+      .search-item .item-meta {
+        font-size: 0.8rem;
+        color: var(--color-greyDarker);
+      }
+  
+      .search-item .item-price {
+        color: var(--color-green);
+        font-weight: 500;
+      }
+  
+      .no-results {
+        padding: 2rem;
+        text-align: center;
+        color: var(--color-greyDarker);
+      }
+  
+      .loading-text {
+        padding: 1rem;
+        text-align: center;
+        color: var(--color-greyDarker);
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
