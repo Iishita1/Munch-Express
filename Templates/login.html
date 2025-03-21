@@ -408,19 +408,20 @@
         <div class="container">
             <!-- Flash Messages -->
             {% with messages = get_flashed_messages(with_categories=True) %}
-                {% if messages %}
-                    <script>
+    {% if messages %}
+        <script>
             // Clear old messages immediately when a new page loads
-                        sessionStorage.removeItem('flashed_messages');
-                    </script>
-                     {% for category, message in messages %}
-                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                            {{ message }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
+            sessionStorage.removeItem('flashed_messages');
+        </script>
+        {% for category, message in messages %}
+            <!-- Add Bootstrap alert classes based on the category -->
+            <div class="alert alert-{{ category }} alert-dismissible fade show" style="color :#ff6b6b" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 
             <div class="tabs">
                 <div class="tab active" onclick="switchTab('login')">Sign In</div>
